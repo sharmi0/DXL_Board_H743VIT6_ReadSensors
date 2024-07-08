@@ -1,0 +1,71 @@
+../Core/Src/XM430_bus.cpp:4:1:XM430_bus::XM430_bus(UART_HandleTypeDef*, GPIO_TypeDef*, uint16_t)	4	static
+../Core/Src/XM430_bus.cpp:115:6:void XM430_bus::sendIPacket()	8	static
+../Core/Src/XM430_bus.cpp:131:6:void XM430_bus::getRPacket()	8	static
+../Core/Src/XM430_bus.cpp:146:6:void XM430_bus::sendIPacket_DMA()	8	static
+../Core/Src/XM430_bus.cpp:153:6:void XM430_bus::getRPacket_DMA()	8	static
+../Core/Src/XM430_bus.cpp:779:10:uint16_t XM430_bus::update_crc(uint16_t, uint8_t*, uint16_t)	528	static
+../Core/Src/XM430_bus.cpp:25:6:void XM430_bus::iRead(uint8_t, uint8_t, uint16_t)	8	static
+../Core/Src/XM430_bus.cpp:188:9:uint8_t XM430_bus::GetSomething(uint8_t, uint16_t)	8	static
+../Core/Src/XM430_bus.cpp:332:9:uint8_t XM430_bus::GetID(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:347:9:uint8_t XM430_bus::GetBaudRate(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:363:9:uint8_t XM430_bus::GetRetDelTime(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:378:9:uint8_t XM430_bus::GetControlMode(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:392:9:uint8_t XM430_bus::GetTempLim(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:421:9:uint8_t XM430_bus::GetRetLev(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:426:9:uint8_t XM430_bus::GetShutdown(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:442:9:uint8_t XM430_bus::GetTorqueEn(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:455:9:uint8_t XM430_bus::GetStatusLED(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:643:9:uint8_t XM430_bus::GetTemperature(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:683:9:uint8_t XM430_bus::GetRegInst(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:688:9:uint8_t XM430_bus::GetMoving(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:693:9:uint8_t XM430_bus::GetHWErr(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:210:10:uint16_t XM430_bus::GetSomething16(uint8_t, uint16_t)	8	static
+../Core/Src/XM430_bus.cpp:407:10:uint16_t XM430_bus::GetCurrentLimit(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:470:10:uint16_t XM430_bus::GetPosDGain(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:484:10:uint16_t XM430_bus::GetPosIGain(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:498:10:uint16_t XM430_bus::GetPosPGain(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:544:10:uint16_t XM430_bus::GetGoalCurrent(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:633:10:uint16_t XM430_bus::GetCurrent(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:638:10:uint16_t XM430_bus::GetVoltage(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:232:10:uint32_t XM430_bus::GetSomething32(uint8_t, uint16_t)	8	static
+../Core/Src/XM430_bus.cpp:514:10:uint32_t XM430_bus::GetGoalPosition(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:530:10:uint32_t XM430_bus::GetGoalVelocity(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:623:10:uint32_t XM430_bus::GetPosition(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:628:10:uint32_t XM430_bus::GetVelocity(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:45:6:void XM430_bus::iWrite(uint8_t, uint16_t, uint8_t*, uint8_t)	16	static
+../Core/Src/XM430_bus.cpp:164:6:void XM430_bus::SetSomething(uint8_t, uint16_t, uint8_t*, uint8_t)	24	static
+../Core/Src/XM430_bus.cpp:323:6:void XM430_bus::SetID(uint8_t, uint8_t)	24	static
+../Core/Src/XM430_bus.cpp:337:6:void XM430_bus::SetBaudRate(uint8_t, uint8_t)	24	static
+../Core/Src/XM430_bus.cpp:352:6:void XM430_bus::SetRetDelTime(uint8_t, uint8_t)	32	static
+../Core/Src/XM430_bus.cpp:369:6:void XM430_bus::SetControlMode(uint8_t, uint8_t)	24	static
+../Core/Src/XM430_bus.cpp:383:6:void XM430_bus::SetTempLim(uint8_t, uint8_t)	24	static
+../Core/Src/XM430_bus.cpp:397:6:void XM430_bus::SetCurrentLimit(uint8_t, uint16_t)	24	static
+../Core/Src/XM430_bus.cpp:412:6:void XM430_bus::SetRetLev(uint8_t, uint8_t)	24	static
+../Core/Src/XM430_bus.cpp:434:6:void XM430_bus::SetTorqueEn(uint8_t, uint8_t)	24	static
+../Core/Src/XM430_bus.cpp:447:6:void XM430_bus::TurnOnLED(uint8_t, uint8_t)	24	static
+../Core/Src/XM430_bus.cpp:461:6:void XM430_bus::SetPosDGain(uint8_t, uint16_t)	24	static
+../Core/Src/XM430_bus.cpp:475:6:void XM430_bus::SetPosIGain(uint8_t, uint16_t)	24	static
+../Core/Src/XM430_bus.cpp:489:6:void XM430_bus::SetPosPGain(uint8_t, uint16_t)	24	static
+../Core/Src/XM430_bus.cpp:503:6:void XM430_bus::SetGoalPosition(uint8_t, uint32_t)	24	static
+../Core/Src/XM430_bus.cpp:519:6:void XM430_bus::SetGoalVelocity(uint8_t, uint32_t)	24	static
+../Core/Src/XM430_bus.cpp:535:6:void XM430_bus::SetGoalCurrent(uint8_t, uint16_t)	24	static
+../Core/Src/XM430_bus.cpp:550:6:void XM430_bus::SetVelocityProfile(uint8_t, uint32_t)	24	static
+../Core/Src/XM430_bus.cpp:561:6:void XM430_bus::SetAccelerationProfile(uint8_t, uint32_t)	24	static
+../Core/Src/XM430_bus.cpp:768:6:void XM430_bus::SetIndirectAddress(uint8_t, uint16_t, uint16_t)	24	static
+../Core/Src/XM430_bus.cpp:66:6:void XM430_bus::sRead(uint8_t, uint16_t, uint8_t*, uint8_t)	16	static
+../Core/Src/XM430_bus.cpp:263:6:void XM430_bus::GetManyThings(uint8_t*, uint16_t, uint8_t*, uint8_t)	24	static
+../Core/Src/XM430_bus.cpp:281:6:void XM430_bus::GetManyThings16(uint16_t*, uint16_t, uint8_t*, uint8_t)	24	static
+../Core/Src/XM430_bus.cpp:613:6:void XM430_bus::GetMultGoalCurrents(int16_t*, uint8_t*, uint8_t)	32	dynamic
+../Core/Src/XM430_bus.cpp:671:6:void XM430_bus::GetMultCurrents(int16_t*, uint8_t*, uint8_t)	32	dynamic
+../Core/Src/XM430_bus.cpp:300:6:void XM430_bus::GetManyThings32(uint32_t*, uint16_t, uint8_t*, uint8_t)	24	static
+../Core/Src/XM430_bus.cpp:589:6:void XM430_bus::GetMultGoalPositions(int32_t*, uint8_t*, uint8_t)	32	dynamic
+../Core/Src/XM430_bus.cpp:648:6:void XM430_bus::GetMultPositions(int32_t*, uint8_t*, uint8_t)	32	dynamic
+../Core/Src/XM430_bus.cpp:660:6:void XM430_bus::GetMultVelocities(int32_t*, uint8_t*, uint8_t)	32	dynamic
+../Core/Src/XM430_bus.cpp:90:6:void XM430_bus::sWrite(uint8_t, uint16_t, uint8_t*, uint8_t)	16	static
+../Core/Src/XM430_bus.cpp:254:6:void XM430_bus::SetManyThings(uint8_t, uint16_t, uint8_t*, uint8_t)	24	static
+../Core/Src/XM430_bus.cpp:572:6:void XM430_bus::SetMultGoalPositions(uint8_t*, uint8_t, uint32_t*)	32	dynamic
+../Core/Src/XM430_bus.cpp:598:6:void XM430_bus::SetMultGoalCurrents(uint8_t*, uint8_t, uint16_t*)	32	dynamic
+../Core/Src/XM430_bus.cpp:699:6:void XM430_bus::FactoryReset(uint8_t, uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:719:6:void XM430_bus::Ping(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:748:6:void XM430_bus::Reboot(uint8_t)	8	static
+../Core/Src/XM430_bus.cpp:824:1:XM430_bus::~XM430_bus()	0	static

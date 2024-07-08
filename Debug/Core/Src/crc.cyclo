@@ -1,0 +1,1 @@
+../Core/Src/crc.cpp:1:16:short unsigned int update_crc(short unsigned int, unsigned char*, short unsigned int)	3

@@ -1,0 +1,6 @@
+../Core/Src/actuator_transformation.cpp:29:6:void ActuatorTransformationL(uint32_t (&)[4], float, float, float, float)	1
+../Core/Src/actuator_transformation.cpp:39:6:void ActuatorTransformationR(uint32_t (&)[4], float, float, float, float)	1
+../Core/Src/actuator_transformation.cpp:61:6:void InverseActuatorTransformationL(double*, int32_t, int32_t, int32_t, int32_t)	1
+../Core/Src/actuator_transformation.cpp:71:6:void InverseActuatorTransformationR(double*, int32_t, int32_t, int32_t, int32_t)	1
+../Core/Src/actuator_transformation.cpp:90:6:void InverseActuatorVelocityTransformationL(double*, float, float, float, float)	1
+../Core/Src/actuator_transformation.cpp:100:6:void InverseActuatorVelocityTransformationR(double*, float, float, float, float)	1
