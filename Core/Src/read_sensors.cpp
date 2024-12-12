@@ -26,7 +26,7 @@ uint8_t sense_rx_buf[16]; // TODO: could make this shorter?
 
 
 // Variables for force sensor data
- int32_t pressure_raw1[8];
+int32_t pressure_raw1[8];
 int32_t pressure_raw2[8];
 uint8_t tof1[8];
 uint8_t tof2[8];
@@ -82,9 +82,12 @@ int dxl_read_main(void)
 
 //			printf("loop time: %lu \r\n",eval_time);
 			HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
-//
-			printf("Force data: %lf, %lf, %lf, %lf, %lf\n\r", force2[0], force2[1], force2[2], force2[3], force2[4]);
-			printf("Pressure data: %ld, %ld, %ld, %ld, %ld, %ld, %ld, %ld,\n\r", pressure_raw2[0], pressure_raw2[1], pressure_raw2[2], pressure_raw2[3], pressure_raw2[4], pressure_raw2[5], pressure_raw2[6], pressure_raw2[7]);
+//			HAL_Delay(100);
+//			printf("Force data: %lf, %lf, %lf, %lf, %lf\n\r", force2[0],force2[1],force2[2],force2[3],force2[4]);
+			printf("Pressure data: %ld, %ld, %ld, %ld, %ld, %ld, %ld, %ld\n\r", pressure_raw2[0],pressure_raw2[1],pressure_raw2[2],pressure_raw2[3],pressure_raw2[4],pressure_raw2[5],pressure_raw2[6],pressure_raw2[7]);
+//			printf("TOF1: %03d,%03d,%03d,%03d,%03d\n\r", tof1[0], tof1[1], tof1[2], tof1[3], tof1[4]);
+//			printf("TOF2: %03d,%03d,%03d,%03d,%03d\n\r", tof2[0], tof2[1], tof2[2], tof2[3], tof2[4]);
+
 		loop_count++;
 	}
 }
