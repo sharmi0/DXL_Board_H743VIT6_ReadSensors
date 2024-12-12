@@ -87,8 +87,8 @@ all: main-build
 main-build: DXL_Board_H743VIT6_ReadSensors.elf secondary-outputs
 
 # Tool invocations
-DXL_Board_H743VIT6_ReadSensors.elf DXL_Board_H743VIT6_ReadSensors.map: $(OBJS) $(USER_OBJS) C:\Users\Sharmi\Dropbox\ (MIT)\BRL\DXL_Board_H743VIT6_ReadSensors\STM32H743VITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
-	arm-none-eabi-g++ -o "DXL_Board_H743VIT6_ReadSensors.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\Sharmi\Dropbox (MIT)\BRL\DXL_Board_H743VIT6_ReadSensors\STM32H743VITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DXL_Board_H743VIT6_ReadSensors.map" -Wl,--gc-sections -static -u_printf_float --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
+DXL_Board_H743VIT6_ReadSensors.elf DXL_Board_H743VIT6_ReadSensors.map: $(OBJS) $(USER_OBJS) C:\Users\Sharmi\Dropbox\ (MIT)\BRL\Firmware\DXL_Board_H743VIT6_ReadSensors\STM32H743VITX_FLASH.ld makefile objects.list $(OPTIONAL_TOOL_DEPS)
+	arm-none-eabi-g++ -o "DXL_Board_H743VIT6_ReadSensors.elf" @"objects.list" $(USER_OBJS) $(LIBS) -mcpu=cortex-m7 -T"C:\Users\Sharmi\Dropbox (MIT)\BRL\Firmware\DXL_Board_H743VIT6_ReadSensors\STM32H743VITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="DXL_Board_H743VIT6_ReadSensors.map" -Wl,--gc-sections -static -u_printf_float --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -lstdc++ -lsupc++ -Wl,--end-group
 	@echo 'Finished building target: $@'
 	@echo ' '
 

@@ -38,9 +38,7 @@ Core/Src/read_sensors.o: ../Core/Src/read_sensors.cpp \
  ../Core/Inc/math_ops.h ../Core/Inc/read_sensors.h ../Core/Inc/fdcan.h \
  ../Core/Inc/dma.h ../Core/Inc/startup_dxl.h ../Core/Inc/XM430_bus.h \
  ../Core/Inc/actuator_transformation.h ../Core/Inc/fdcan.h \
- ../Core/Inc/math_ops.h ../Core/Inc/crc.h \
- ../Core/Inc/actuator_transformation.h ../Core/Inc/ForceSensor.h \
- ../Core/Inc/neural_nets.h
+ ../Core/Inc/math_ops.h ../Core/Inc/crc.h ../Core/Inc/ForceSensor.h
 ../Core/Inc/pack_can_functions.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32H7xx_HAL_Driver/Inc/stm32h7xx_hal.h:
@@ -92,6 +90,4 @@ Core/Src/read_sensors.o: ../Core/Src/read_sensors.cpp \
 ../Core/Inc/fdcan.h:
 ../Core/Inc/math_ops.h:
 ../Core/Inc/crc.h:
-../Core/Inc/actuator_transformation.h:
 ../Core/Inc/ForceSensor.h:
-../Core/Inc/neural_nets.h:
