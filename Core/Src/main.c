@@ -17,7 +17,6 @@
   */
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
-#include <read_sensors.h>
 #include "main.h"
 #include "dma.h"
 #include "fdcan.h"

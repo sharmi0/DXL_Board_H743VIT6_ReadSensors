@@ -153,6 +153,7 @@ void HAL_FDCAN_RxFifo1Callback(FDCAN_HandleTypeDef *canHandle, uint32_t RxFifo1I
 
 			else if (id == 4){
 				uint32_t eval_time = (sensor_rx_buf[0] << 24) | (sensor_rx_buf[1] << 16) | (sensor_rx_buf[2] << 8) | sensor_rx_buf[3];
+				elapsedTime = eval_time;
 //				elapsedTime_buf = sensor_rx_buf;
 			}
 
