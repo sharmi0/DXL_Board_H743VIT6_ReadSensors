@@ -22,12 +22,14 @@ uint8_t txMsg_fd_sens[48]; // unused, previously used to send can messages over 
 
 uint8_t sensor_rx_buf[8]; // receives can messages
 uint8_t elapsedTime_buf[4]; // buffer with time to transmit over uart
-
+uint8_t eol[4] = {0xFF, 0xFF, 0xFF, 0xFF};
 
 
 // Variables for force sensor data
 int32_t pressure_raw[8]; // unused rn
 uint32_t elapsedTime = 0; // unused rn
+
+uint8_t data_buffer[32]; // buffer with pressure values to transmit over uart
 
 
 // main CPP loop
@@ -45,9 +47,7 @@ int dxl_read_main(void)
 	sense_can_filt.FilterID2 = 0x0E; // up to 0x0E for phalange sensors (14)
 	sense_can_filt.RxBufferIndex = 0;
 
-	uint8_t num_sensors = 8;
-	uint8_t data_buffer[num_sensors * 4]; // buffer with pressure values to transmit over uart
-
+	// CAN Config
 	if (HAL_FDCAN_ConfigFilter(&hfdcan2, &sense_can_filt) != HAL_OK)
 	{
 		printf("Error in filter config. CAN FD2 \n\r");
@@ -65,37 +65,39 @@ int dxl_read_main(void)
 	// enable CAN Interrupts
 	HAL_FDCAN_ActivateNotification(&hfdcan2,FDCAN_IT_RX_FIFO1_NEW_MESSAGE,0);// Initialize CAN2 Rx1 Interrupt
 
+	// debug message
+	char *message = "Hi\r\n"; // The string to transmit
+
 	while (1) {
 
 
-		// print for now
-		printf("Pressure data: %ld, %ld, %ld, %ld, %ld, %ld, %ld, %ld\n\r", pressure_raw[0],
-				pressure_raw[1],
-				pressure_raw[2],
-				pressure_raw[3],
-				pressure_raw[4],
-				pressure_raw[5],
-				pressure_raw[6],
-				pressure_raw[7]);
-		printf("Time: %ld\n\r", elapsedTime);
+//		// print for now
+//		printf("Pressure data: %ld, %ld, %ld, %ld, %ld, %ld, %ld, %ld\n\r", pressure_raw[0],
+//				pressure_raw[1],
+//				pressure_raw[2],
+//				pressure_raw[3],
+//				pressure_raw[4],
+//				pressure_raw[5],
+//				pressure_raw[6],
+//				pressure_raw[7]);
+//		printf("Time: %ld\n\r", elapsedTime);
 		// Send data buffer
-//	    HAL_UART_Transmit(&huart3, data_buffer, num_sensors * 4,
-//	                        HAL_MAX_DELAY);
+	    HAL_UART_Transmit(&huart6, data_buffer, 32, HAL_MAX_DELAY);
 //
 //
-//		// Transmit time buffer
-//		HAL_UART_Transmit(&huart3, elapsedTime_buf, 4, HAL_MAX_DELAY);
-//
-//		// Transmit eol buffer
-//		HAL_UART_Transmit(&huart3, eol, 4, HAL_MAX_DELAY);  // This was 779
+//		 Transmit time buffer
+		HAL_UART_Transmit(&huart6, elapsedTime_buf, 4, HAL_MAX_DELAY);
 
+//		 Transmit eol buffer
+		HAL_UART_Transmit(&huart6, eol, 4, HAL_MAX_DELAY);  // This was 779
 
-		}
+		// debug transmit
+//		HAL_UART_Transmit(&huart6, (uint8_t *)message, strlen(message), HAL_MAX_DELAY);
 
 
 
 }
-
+}
 
 
 
@@ -110,51 +112,53 @@ void HAL_FDCAN_RxFifo1Callback(FDCAN_HandleTypeDef *canHandle, uint32_t RxFifo1I
 
 			//unpack pressure sensor values
 			if (id == 0){
-				uint32_t p_raw_1 = (sensor_rx_buf[0] << 24) | (sensor_rx_buf[1] << 16) | (sensor_rx_buf[2] << 8) | sensor_rx_buf[3];
-				uint32_t p_raw_2 = (sensor_rx_buf[4] << 24) | (sensor_rx_buf[5] << 16) | (sensor_rx_buf[6] << 8) | sensor_rx_buf[7];
-				pressure_raw[0] = p_raw_1;
-				pressure_raw[1]  = p_raw_2;
-//				for (int i = 0; i < 8; ++i){
-//					data_buffer[i] = sensor_rx_buf[i];
-//				}
+//				uint32_t p_raw_1 = (sensor_rx_buf[0] << 24) | (sensor_rx_buf[1] << 16) | (sensor_rx_buf[2] << 8) | sensor_rx_buf[3];
+//				uint32_t p_raw_2 = (sensor_rx_buf[4] << 24) | (sensor_rx_buf[5] << 16) | (sensor_rx_buf[6] << 8) | sensor_rx_buf[7];
+//				pressure_raw[0] = p_raw_1;
+//				pressure_raw[1]  = p_raw_2;
+				for (int i = 0; i < 8; ++i){
+					data_buffer[i] = sensor_rx_buf[i];
+				}
 
 
 				}
 			else if (id == 1){
-				uint32_t p_raw_1 = (sensor_rx_buf[0] << 24) | (sensor_rx_buf[1] << 16) | (sensor_rx_buf[2] << 8) | sensor_rx_buf[3];
-				uint32_t p_raw_2 = (sensor_rx_buf[4] << 24) | (sensor_rx_buf[5] << 16) | (sensor_rx_buf[6] << 8) | sensor_rx_buf[7];
-				pressure_raw[2] = p_raw_1;
-				pressure_raw[3]  = p_raw_2;
-//				for (int i = 8; i < 16; ++i){
-//					data_buffer[i] = sensor_rx_buf[i];
-//				}
+//				uint32_t p_raw_1 = (sensor_rx_buf[0] << 24) | (sensor_rx_buf[1] << 16) | (sensor_rx_buf[2] << 8) | sensor_rx_buf[3];
+//				uint32_t p_raw_2 = (sensor_rx_buf[4] << 24) | (sensor_rx_buf[5] << 16) | (sensor_rx_buf[6] << 8) | sensor_rx_buf[7];
+//				pressure_raw[2] = p_raw_1;
+//				pressure_raw[3]  = p_raw_2;
+				for (int i = 0; i < 8; ++i){
+					data_buffer[i+8] = sensor_rx_buf[i];
+				}
 
 			}
 			else if (id == 2){
-				uint32_t p_raw_1 = (sensor_rx_buf[0] << 24) | (sensor_rx_buf[1] << 16) | (sensor_rx_buf[2] << 8) | sensor_rx_buf[3];
-				uint32_t p_raw_2 = (sensor_rx_buf[4] << 24) | (sensor_rx_buf[5] << 16) | (sensor_rx_buf[6] << 8) | sensor_rx_buf[7];
-				pressure_raw[4] = p_raw_1;
-				pressure_raw[5]  = p_raw_2;
-//				for (int i = 16; i < 24; ++i){
-//					data_buffer[i] = sensor_rx_buf[i];
-//				}
+//				uint32_t p_raw_1 = (sensor_rx_buf[0] << 24) | (sensor_rx_buf[1] << 16) | (sensor_rx_buf[2] << 8) | sensor_rx_buf[3];
+//				uint32_t p_raw_2 = (sensor_rx_buf[4] << 24) | (sensor_rx_buf[5] << 16) | (sensor_rx_buf[6] << 8) | sensor_rx_buf[7];
+//				pressure_raw[4] = p_raw_1;
+//				pressure_raw[5]  = p_raw_2;
+				for (int i = 0; i < 8; ++i){
+					data_buffer[i+16] = sensor_rx_buf[i];
+				}
 
 				}
 			else if (id == 3){
-				uint32_t p_raw_1 = (sensor_rx_buf[0] << 24) | (sensor_rx_buf[1] << 16) | (sensor_rx_buf[2] << 8) | sensor_rx_buf[3];
-				uint32_t p_raw_2 = (sensor_rx_buf[4] << 24) | (sensor_rx_buf[5] << 16) | (sensor_rx_buf[6] << 8) | sensor_rx_buf[7];
-				pressure_raw[6] = p_raw_1;
-				pressure_raw[7]  = p_raw_2;
-//				for (int i = 24; i < 32; ++i){
-//					data_buffer[i] = sensor_rx_buf[i];
-//				}
+//				uint32_t p_raw_1 = (sensor_rx_buf[0] << 24) | (sensor_rx_buf[1] << 16) | (sensor_rx_buf[2] << 8) | sensor_rx_buf[3];
+//				uint32_t p_raw_2 = (sensor_rx_buf[4] << 24) | (sensor_rx_buf[5] << 16) | (sensor_rx_buf[6] << 8) | sensor_rx_buf[7];
+//				pressure_raw[6] = p_raw_1;
+//				pressure_raw[7]  = p_raw_2;
+				for (int i = 0; i < 8; ++i){
+					data_buffer[i+24] = sensor_rx_buf[i];
+				}
 
 				}
 
 			else if (id == 4){
-				uint32_t eval_time = (sensor_rx_buf[0] << 24) | (sensor_rx_buf[1] << 16) | (sensor_rx_buf[2] << 8) | sensor_rx_buf[3];
-				elapsedTime = eval_time;
-//				elapsedTime_buf = sensor_rx_buf;
+//				uint32_t eval_time = (sensor_rx_buf[0] << 24) | (sensor_rx_buf[1] << 16) | (sensor_rx_buf[2] << 8) | sensor_rx_buf[3];
+//				elapsedTime = eval_time;
+				for (int i = 0; i < 4; ++i){
+					elapsedTime_buf[i] = sensor_rx_buf[i];
+				}
 			}
 
 
