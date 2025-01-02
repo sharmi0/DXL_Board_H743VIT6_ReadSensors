@@ -65,8 +65,6 @@ int dxl_read_main(void)
 	// enable CAN Interrupts
 	HAL_FDCAN_ActivateNotification(&hfdcan2,FDCAN_IT_RX_FIFO1_NEW_MESSAGE,0);// Initialize CAN2 Rx1 Interrupt
 
-	// debug message
-	char *message = "Hi\r\n"; // The string to transmit
 
 	while (1) {
 
@@ -90,9 +88,6 @@ int dxl_read_main(void)
 
 //		 Transmit eol buffer
 		HAL_UART_Transmit(&huart6, eol, 4, HAL_MAX_DELAY);  // This was 779
-
-		// debug transmit
-//		HAL_UART_Transmit(&huart6, (uint8_t *)message, strlen(message), HAL_MAX_DELAY);
 
 
 
