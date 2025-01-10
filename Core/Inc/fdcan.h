@@ -99,14 +99,26 @@ extern FDCAN_HandleTypeDef hfdcan2;
 #define KD_SCALE 50.0f
 #define T_SCALE 50.0f
 
-// new limits for force sensors, need to test these!
-#define FT_MIN -20.0f
-#define FT_MAX 20.0f
-#define FN_MIN -30.0f
-#define FN_MAX 30.0f
+//// new limits for force sensors, need to test these!
+//#define FT_MIN -20.0f
+//#define FT_MAX 20.0f
+//#define FN_MIN -30.0f
+//#define FN_MAX 30.0f
 #define ANG_MIN -135.0f
 #define ANG_MAX 45.0f
-#define RNG_MAX 255 // this probably won't be necessary
+//#define RNG_MAX 255 // this probably won't be necessary
+
+// ellipsoid
+#define FT_MIN -10.0f
+#define FT_MAX 10.0f
+#define FN_MIN -1.0f
+#define FN_MAX 10.0f
+#define ANG_MIN_THETA -34.0f
+#define ANG_MAX_THETA 34.0f
+#define ANG_MIN_PHI -54.0f
+#define ANG_MAX_PHI 54.0f
+#define CFLAG_MIN 0.0f
+#define CFLAG_MAX 1.0f
 
 extern FDCAN_RxHeaderTypeDef rxMsg_sys;
 extern FDCAN_RxHeaderTypeDef rxMsg_sense;
