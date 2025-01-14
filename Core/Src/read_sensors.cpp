@@ -83,7 +83,7 @@ int dxl_read_main(void)
 //			printf("loop time: %lu \r\n",eval_time);
 			HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
 //			HAL_Delay(100);
-			printf("Force data: %lf, %lf, %lf, %lf, %lf, %lf, %lf\n\r", force1[0],force1[1],force1[2],force1[3],force1[4],force1[5],force1[6]);
+			printf("Force data: %lf, %lf, %lf, %lf, %lf, %lf, %lf, %lf\n\r", force1[0],force1[1],force1[2],force1[3],force1[4],force1[5],force1[6], force1[7]);
 //			printf("Pressure data: %ld, %ld, %ld, %ld, %ld, %ld, %ld, %ld\n\r", pressure_raw1[0],pressure_raw1[1],pressure_raw1[2],pressure_raw1[3],pressure_raw1[4],pressure_raw1[5],pressure_raw1[6],pressure_raw1[7]);
 //			printf("TOF1: %03d,%03d,%03d,%03d,%03d\n\r", tof1[0], tof1[1], tof1[2], tof1[3], tof1[4]);
 //			printf("TOF2: %03d,%03d,%03d,%03d,%03d\n\r", tof2[0], tof2[1], tof2[2], tof2[3], tof2[4]);
@@ -114,6 +114,7 @@ void HAL_FDCAN_RxFifo1Callback(FDCAN_HandleTypeDef *canHandle, uint32_t RxFifo1I
 				uint8_t theta_int = sense_rx_buf[4];
 				uint8_t phi_int = sense_rx_buf[5];
 				uint8_t contact_flag_int = sense_rx_buf[6];
+
 				/// convert uints to floats ///
 				force1[0] = uint_to_float(fx_int, FT_MIN, FT_MAX, 8);
 				force1[1]  = uint_to_float(fy_int, FT_MIN, FT_MAX, 8);
@@ -122,6 +123,7 @@ void HAL_FDCAN_RxFifo1Callback(FDCAN_HandleTypeDef *canHandle, uint32_t RxFifo1I
 				force1[4]  = uint_to_float(theta_int, ANG_MIN_THETA, ANG_MAX_THETA, 8);
 				force1[5]  = uint_to_float(phi_int, ANG_MIN_PHI, ANG_MAX_PHI, 8);
 				force1[6]  = uint_to_float(contact_flag_int, CFLAG_MIN, CFLAG_MAX, 8);
+				force1[7]  = sense_rx_buf[7];
 			}
 //			else if (id == CAN2_FORCE_2){
 //
