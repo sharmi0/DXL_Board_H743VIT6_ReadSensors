@@ -79,21 +79,21 @@ int dxl_read_main(void)
 	int loop_count = 0;
 	HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
 
-//	while (init_flag != 1);
-//	// print out sensor init message
-//	if (init_msg[0] == 0){
-//		printf("Sensor type: SPHERE\n\r");
-//	}
-//	else if (init_msg[0] == 1){
-//		printf("Sensor type: ELLIPSOID\n\r");
-//	}
-//	if (init_msg[1] == 0){
-//		printf("Sensor net: MLP\n\r");
-//	}
-//	else if (init_msg[1] == 1){
-//		printf("Sensor net: RNN\n\r");
-//	}
-//	printf("Sensor number:%d\n\r",init_msg[2]);
+	while (init_flag != 1);
+	// print out sensor init message
+	if (init_msg[0] == 0){
+		printf("Sensor type: SPHERE\n");
+	}
+	else if (init_msg[0] == 1){
+		printf("Sensor type: ELLIPSOID\n");
+	}
+	if (init_msg[1] == 0){
+		printf("Sensor net: MLP\n");
+	}
+	else if (init_msg[1] == 1){
+		printf("Sensor net: RNN\n");
+	}
+	printf("Sensor number:%d\n",init_msg[2]);
 
 	HAL_Delay(2000);
 
