@@ -31,7 +31,9 @@ int32_t pressure_raw1[8];
 uint8_t tof1[8];
 //uint8_t tof2[8];
 
-float force1[7];
+float force1[8];
+volatile int init_flag = 0;
+uint8_t init_msg[3];
 //float force2[7];
 
 //extern NeuralNet sensorB3;
@@ -74,16 +76,38 @@ int dxl_read_main(void)
 	// enable CAN Interrupts
 	HAL_FDCAN_ActivateNotification(&hfdcan2,FDCAN_IT_RX_FIFO1_NEW_MESSAGE,0);// Initialize CAN2 Rx1 Interrupt
 
-
 	int loop_count = 0;
 	HAL_GPIO_WritePin(LED1_GPIO_Port, LED1_Pin, GPIO_PIN_SET);
+
+//	while (init_flag != 1);
+//	// print out sensor init message
+//	if (init_msg[0] == 0){
+//		printf("Sensor type: SPHERE\n\r");
+//	}
+//	else if (init_msg[0] == 1){
+//		printf("Sensor type: ELLIPSOID\n\r");
+//	}
+//	if (init_msg[1] == 0){
+//		printf("Sensor net: MLP\n\r");
+//	}
+//	else if (init_msg[1] == 1){
+//		printf("Sensor net: RNN\n\r");
+//	}
+//	printf("Sensor number:%d\n\r",init_msg[2]);
+
+	HAL_Delay(2000);
+
+
+
 	while (1)
 	{
 
 //			printf("loop time: %lu \r\n",eval_time);
 			HAL_GPIO_TogglePin(LED1_GPIO_Port, LED1_Pin);
 //			HAL_Delay(100);
-			printf("Force data: %lf, %lf, %lf, %lf, %lf, %lf, %lf, %lf\n\r", force1[0],force1[1],force1[2],force1[3],force1[4],force1[5],force1[6], force1[7]);
+//			printf("Force data: %lf, %lf, %lf, %lf, %lf, %lf, %lf, %lf\n\r", force1[0],force1[1],force1[2],force1[3],force1[4],force1[5],force1[6], force1[7]);
+			printf("%lf,%lf,%lf,%lf,%lf,%lf,%lf,%lf\n",force1[0],force1[1],force1[2],force1[3],force1[4],force1[5],force1[6],force1[7]);
+//			printf("init flag: %d\n\r", init_flag);
 //			printf("Pressure data: %ld, %ld, %ld, %ld, %ld, %ld, %ld, %ld\n\r", pressure_raw1[0],pressure_raw1[1],pressure_raw1[2],pressure_raw1[3],pressure_raw1[4],pressure_raw1[5],pressure_raw1[6],pressure_raw1[7]);
 //			printf("TOF1: %03d,%03d,%03d,%03d,%03d\n\r", tof1[0], tof1[1], tof1[2], tof1[3], tof1[4]);
 //			printf("TOF2: %03d,%03d,%03d,%03d,%03d\n\r", tof2[0], tof2[1], tof2[2], tof2[3], tof2[4]);
@@ -118,7 +142,7 @@ void HAL_FDCAN_RxFifo1Callback(FDCAN_HandleTypeDef *canHandle, uint32_t RxFifo1I
 				/// convert uints to floats ///
 				force1[0] = uint_to_float(fx_int, FT_MIN, FT_MAX, 8);
 				force1[1]  = uint_to_float(fy_int, FT_MIN, FT_MAX, 8);
-				force1[2]  = uint_to_float(fz_int, FN_MIN, FN_MAX, 8);
+				force1[2]  = uint_to_float(fz_int, FT_MIN, FT_MAX, 8);
 				force1[3]  = uint_to_float(fn_int, FN_MIN, FN_MAX, 8);
 				force1[4]  = uint_to_float(theta_int, ANG_MIN_THETA, ANG_MAX_THETA, 8);
 				force1[5]  = uint_to_float(phi_int, ANG_MIN_PHI, ANG_MAX_PHI, 8);
@@ -183,6 +207,13 @@ void HAL_FDCAN_RxFifo1Callback(FDCAN_HandleTypeDef *canHandle, uint32_t RxFifo1I
 				pressure_raw1[7]  = p_raw_2;
 
 				}
+			else if (id == 9){
+				init_flag = 1;
+				init_msg[0] = sense_rx_buf[0];
+				init_msg[1] = sense_rx_buf[1];
+				init_msg[2] = sense_rx_buf[2];
+
+			}
 
 
 		}

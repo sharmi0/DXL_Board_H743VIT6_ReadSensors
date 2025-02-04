@@ -108,15 +108,27 @@ extern FDCAN_HandleTypeDef hfdcan2;
 #define ANG_MAX 45.0f
 //#define RNG_MAX 255 // this probably won't be necessary
 
-// ellipsoid
+//// ellipsoid
+//#define FT_MIN -10.0f
+//#define FT_MAX 10.0f
+//#define FN_MIN -10.0f
+//#define FN_MAX 2.0f
+//#define ANG_MIN_THETA -34.0f
+//#define ANG_MAX_THETA 34.0f
+//#define ANG_MIN_PHI -54.0f
+//#define ANG_MAX_PHI 54.0f
+//#define CFLAG_MIN 0.0f
+//#define CFLAG_MAX 1.0f
+
+// sphere
 #define FT_MIN -10.0f
 #define FT_MAX 10.0f
-#define FN_MIN -1.0f
-#define FN_MAX 10.0f
-#define ANG_MIN_THETA -34.0f
-#define ANG_MAX_THETA 34.0f
-#define ANG_MIN_PHI -54.0f
-#define ANG_MAX_PHI 54.0f
+#define FN_MIN -10.0f
+#define FN_MAX 2.0f
+#define ANG_MIN_THETA -45.0f
+#define ANG_MAX_THETA 45.0f
+#define ANG_MIN_PHI -135.0f
+#define ANG_MAX_PHI 45.0f
 #define CFLAG_MIN 0.0f
 #define CFLAG_MAX 1.0f
 
